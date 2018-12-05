@@ -1,0 +1,68 @@
+
+body {
+    background-image:url("images/background.jpg");
+}
+
+#header {
+    text-align: center;
+    border: solid 5px orange;
+    margin-left:30%;
+    margin-right:30%;
+    background-color: orange;
+}
+h1 {
+    color:purple;
+    font-family: 'Black Han Sans', sans-serif;
+    font-size: 60px;
+    margin-bottom:0px;
+}
+
+.head {
+    font-family: 'Sedgwick Ave', cursive;
+    color:blue;
+    font-size:40px;
+    margin-top:0px;
+}
+
+.container {
+    background-color: whitesmoke;
+      margin-top: 5px;
+        margin-left: 20%;
+        margin-right:20%;
+        text-align: center;
+        
+    }
+
+    #wordPicked {
+        font-size: 30px;
+        margin-bottom: 10px;
+        margin-top: 10px;
+    }
+
+
+#scorekeeper {
+    padding: 20px;
+}
+
+#directions-text{
+    font-size:30px;
+    padding-top:10px;
+}
+
+
+.holder {
+    padding: 5px;
+    position: relative;
+    border-top: solid orange 2px;
+    border-bottom: solid orange 2px;
+    margin-bottom: 5px;
+    font-size: 20px;
+}
+
+span {
+    border: solid orange 2px;
+    padding-left: 3px;
+    padding-right:3px;
+    background-color: greenyellow; 
+    font-size: 15px;
+}
