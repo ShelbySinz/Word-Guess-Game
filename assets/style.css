@@ -1,17 +1,18 @@
 
 body {
     background-image:url("images/background.jpg");
+    background-size:100%;
 }
 
 #header {
     text-align: center;
-    border: solid 5px orange;
+    border: solid 5px lightslategray;
     margin-left:30%;
     margin-right:30%;
-    background-color: orange;
+    background-color:lightslategray;
 }
 h1 {
-    color:purple;
+    color:black;
     font-family: 'Black Han Sans', sans-serif;
     font-size: 60px;
     margin-bottom:0px;
@@ -19,7 +20,7 @@ h1 {
 
 .head {
     font-family: 'Sedgwick Ave', cursive;
-    color:blue;
+    color:black;
     font-size:40px;
     margin-top:0px;
 }
@@ -53,16 +54,22 @@ h1 {
 .holder {
     padding: 5px;
     position: relative;
-    border-top: solid orange 2px;
-    border-bottom: solid orange 2px;
+    border-top: solid gray 2px;
+    border-bottom: solid gray 2px;
     margin-bottom: 5px;
     font-size: 20px;
 }
 
 span {
-    border: solid orange 2px;
+    border: solid gray 2px;
     padding-left: 3px;
     padding-right:3px;
-    background-color: greenyellow; 
+    background-color:lightblue; 
     font-size: 15px;
+}
+
+#mainImg {
+    height:50px;
+    width: 100px;
+
 }

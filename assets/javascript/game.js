@@ -1,23 +1,18 @@
 
 
-/* words to pick from
-  chosen word space
-  letters picked space
-   wrong letters space
-   count the wins
-   count the guesses left
-*/
-
-// Globals
-
-  var shows = ["friends", "fresh prince", "saved by the bell", "boy meets world", "full house", "home improvement", "the nanny"];
+  var show = ["monica", "joey", "chandler", "pheobe", "rachel", "ross"];
   
 
-  var chosenWord = [];
-  var blanksAndLetter = [];
-  var guessedLetters =[];
+  var chosenWord = "";
+  var lettersInChosenWord = [];
+  var blanks = 0;
+  var blanksAndSucceses =[];
+  var wrongGuesses= [];
+
+  var letterGuessed = "";
 
   var wins= 0;
+  var losses = 0;
   var guessLeft = 9;
 
   
@@ -25,113 +20,104 @@
   
  
  
-  var winsText = document.getElementById("win-text");
-  var guessesremaining = document.getElementById("guesses");
-  var onscreen = document.getElementById("BlanksLetter");
-
-  /*
-   have a function where user picks a letter key
-   have the computer generate a word out of the array
-   show blanks on screen for word randomly picked
-   show letters picked on screen
-   show wrong letters
-   update wins
-   reset and show new blanks for new word chosen
- */
- document.getElementById("mainImg").addEventListener("click",function(){
   
-var WordChose = shows[Math.floor(Math.random() * shows.length)];                       
-var Letter = WordChose.split("");
-//console log for wordpicked
-
- console.log(Letter);
-
- // Functions
- var blanks = Letter.length;
- 
- for (var j = 0; j < blanks; j++) {
-  chosenWord.push("_");
- 
-  console.log(Letter[j]);
- }
-
- document.getElementById ("wordPicked").innerHTML= chosenWord.join(" ");
-
- 
-
-
- 
-
   
+
  
+ function startGame(){
 
+ guessLeft = 9;
+  
+chosenWord = show[Math.floor(Math.random() * show.length)];                       
+lettersInChosenWord = chosenWord.split("");
+ blanks = lettersInChosenWord.length;
+ console.log(chosenWord);
+ blanksAndSucceses= [];
+ wrongGuesses= [];
 
-function reset(){
-    guessLeft = 9;
-    guessedLetters = [];
-        updateGuesses();
-         newWordToGuess();
-      
-      }
+ for (var i = 0; i < blanks; i++) {
+  blanksAndSucceses.push("_");
 
-
-
-
-
-     
  
- document.onkeyup = function(event) {
-         var userguess = event.key.toLowerCase();
+  }
 
-       
-  
-         //console log for userguess
+  console.log(blanksAndSucceses);
 
-          console.log(userguess);
-
-
-      
-            
-          
-    
-              
-                if (WordChose.indexOf(userguess) !== -1){
-                        
-                  guessLeft--;
-                  alert("yes!");
-                  onscreen.textContent =  blanksAndLetter.concat("_") + blanksAndLetter.push(userguess);
-                }
-                
-
-                
-               else {
-                   guessLeft--;
-                 alert("Wrong!");
-                 document.getElementById("wrongGuess").innerHTML = "Your Guesses: " + guessedLetters.join(', ') + guessedLetters.push(userguess);
-
-                 }
-                
-      
-
-          
-
-              if (guessLeft === 0) {
-                alert("You lost!");
-                reset();
-      
-              }
-
-              
+  document.getElementById("guesses").textContent = guessLeft;
+  document.getElementById("wrongGuess").innerHTML = wrongGuesses.join("");
+  document.getElementById("wordPicked").textContent = blanksAndSucceses.join(" ");
 
 
-              guessesremaining.textContent = guessLeft;
+}
 
-              
-   
-            }   
- });
+function checkLetters(letter){
 
-  
-// execution of functions
+  var LetterInWord = false;
 
-     
+  for (var i = 0; i < blanks; i++) {
+    if (chosenWord[i]=== letter){
+      LetterInWord = true;
+    }
+
+}
+
+if (LetterInWord) {
+  for (var j = 0; j < blanks; j++) {
+    if (chosenWord[j]=== letter){
+      blanksAndSucceses[j] = letter;
+    }
+  }
+  console.log(blanksAndSucceses);
+}
+
+else {
+  wrongGuesses.push(letter);
+  guessLeft--;
+
+}
+}
+
+function rounddone(){
+
+  console.log("wins: " + wins + "| Losses: " + losses + "|guesses: " + guessLeft);
+
+  document.getElementById("guesses").innerHTML = guessLeft;
+  document.getElementById("wordPicked").innerHTML = blanksAndSucceses.join(" ");
+  document.getElementById("wrongGuess").innerHTML = wrongGuesses.join(" ");
+
+  if (lettersInChosenWord.toString()=== blanksAndSucceses.toString()){
+
+    wins++;
+
+    alert("YOU WIN!");
+
+    document.getElementById("wins-text").innerHTML = wins;
+
+    startGame();
+  }
+
+
+else if (guessLeft === 0){
+        
+   losses++;
+
+   alert("YOU LOSE!");
+
+   document.getElementById("loss-text").innerHTML= losses;
+
+   startGame();
+}
+
+}
+
+
+startGame();
+
+document.onkeyup = function(event) {
+
+  letterGuessed = event.key.toLowerCase();
+
+  checkLetters(letterGuessed);
+
+  rounddone();
+};
